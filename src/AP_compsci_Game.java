@@ -15,12 +15,17 @@ public class AP_compsci_Game extends JFrame{
 		setSize(WIDTH, HEIGHT);
 		setBackground(Color.BLACK);
 
-		//Tablet tb = new Tablet(this);
-		//((Component)tb).setFocusable(true);
+		Tablet tb = new Tablet();
+		((Component)tb).setFocusable(true);
 
-      //getContentPane().add( tb );
+		getContentPane().add( tb );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	
+	public static void main( String args[] )
+	{
+		AP_compsci_Game run = new AP_compsci_Game();
 	}
 	
 }
