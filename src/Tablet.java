@@ -9,10 +9,16 @@ public class Tablet extends JPanel implements Runnable {
 
 	ArrayList<Entity> entitys;
 	KeyboardListener listen;
+	Player player;
 	
 	public Tablet(){
 		listen = new KeyboardListener();
 		this.addKeyListener(listen);
+		Toolkit tk = Toolkit.getDefaultToolkit();
+        Image ia = tk.getImage(getClass().getResource("gobby_idleL_strip8.png"));
+        player = new Player(ia,ia,ia,400,300);
+        entitys = new ArrayList<Entity>();
+        entitys.add(player);
 	}
 
 	public void update(Graphics window) {
@@ -20,8 +26,15 @@ public class Tablet extends JPanel implements Runnable {
 	}
 
 	public void paint(Graphics window) {
-		Toolkit tk = Toolkit.getDefaultToolkit();
-        Image ia = tk.getImage(getClass().getResource("gobby_idleL_strip8.png"));
+		player.setKey(0, listen.getKey(0));
+		player.setKey(1, listen.getKey(1));
+		player.setKey(2, listen.getKey(2));
+		player.setKey(3, listen.getKey(3));
+		for(Entity e : entitys){
+			//e.move();
+			e.draw(window);
+		}
+		player.move();
 	}
 
 	@Override

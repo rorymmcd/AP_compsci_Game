@@ -4,10 +4,14 @@ import java.awt.event.KeyListener;
 
 public class KeyboardListener implements KeyListener{
 
-	public boolean keys[];
+	private boolean keys[];
 	
 	public KeyboardListener(){
 		keys = new boolean[5];
+	}
+	
+	public boolean getKey(int k){
+		return keys[k];
 	}
 	
 	@Override
