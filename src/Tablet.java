@@ -31,10 +31,12 @@ public class Tablet extends JPanel implements Runnable {
 		player.setKey(2, listen.getKey(2));
 		player.setKey(3, listen.getKey(3));
 		for(Entity e : entitys){
-			//e.move();
-			e.draw(window);
+			e.move();
+			e.draw(window,this);
 		}
-		player.move();
+		//player.move();
+		//player.draw(window, this);
+		System.out.println(listen.getKey(0)+" "+listen.getKey(1));
 	}
 
 	@Override
