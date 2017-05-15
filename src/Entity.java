@@ -27,6 +27,12 @@ public class Entity {
 		g.drawImage(spritesheet, x-hw, y-hh, x+hw, y+hh,frame*w,0,(frame+1)*w,h,null);
 	}
 	
+	public void draw(Graphics g, Image i){
+		int hw = w/2;
+		int hh = h/2;
+		g.drawImage(i, x-hw, y-hh, x+hw, y+hh,frame*w,0,(frame+1)*w,h,null);
+	}
+	
 	public void incFrame(){
 		frame++;
 		if(frame>maxFrame)frame=0;
