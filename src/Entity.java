@@ -41,4 +41,9 @@ public class Entity {
 	public void move(){
 		//x++;
 	}
+
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
