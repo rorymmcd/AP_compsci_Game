@@ -39,6 +39,6 @@ public class Entity {
 	}
 	
 	public void move(){
-		
+		//x++;
 	}
 }

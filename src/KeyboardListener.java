@@ -19,7 +19,7 @@ public class KeyboardListener implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
         {
             keys[0] = true;
-            System.out.println("0");
+            //System.out.println("0");
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {
@@ -44,7 +44,7 @@ public class KeyboardListener implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
         {
             keys[0] = false;
-            System.out.println("1");
+            //System.out.println("1");
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {

@@ -36,7 +36,7 @@ public class Tablet extends JPanel implements Runnable {
 		}
 		//player.move();
 		//player.draw(window, this);
-		System.out.println(listen.getKey(0)+" "+listen.getKey(1));
+		System.out.println(player.x+" "+player.y);
 	}
 
 	@Override

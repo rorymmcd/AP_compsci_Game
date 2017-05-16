@@ -24,6 +24,7 @@ public class Player extends Entity {
 		if(keys[1])x++;
 		if(keys[2])y--;
 		if(keys[3])y++;
+		//x++;
 	}
 	
 }
