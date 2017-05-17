@@ -19,7 +19,7 @@ public class Entity {
 	
 	public boolean colliding(Entity e){
 		//return ((int)Math.sqrt(Math.pow(x-e.x, 2)+Math.pow(y-e.y,2))<r+e.r);
-		return 
+		return Math.abs(x-e.x)<r+e.r && Math.abs(y-e.y)<r+e.r;
 	}
 	
 	public void draw(Graphics g, Tablet tablet){

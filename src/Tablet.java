@@ -68,10 +68,13 @@ public class Tablet extends JPanel implements Runnable {
 					i--;
 				}
 			}
-			for(Entity e : entitys){
-				for(Entity r : entitys){
+			for(int i = 0; i<entitys.size(); i++){
+				Entity e = entitys.get(i);
+				for(int j = i+1; j < entitys.size(); j++){
+					Entity r = entitys.get(j);
 					if(e.colliding(r)){
 						e.onCollide(r,this);
+						r.onCollide(e, this);
 						System.out.println("COLLITION");
 					}
 				}

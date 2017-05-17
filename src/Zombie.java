@@ -41,6 +41,7 @@ public class Zombie extends Entity {
 			Player p = (Player) e;
 			p.damage(5);
 			dir=(int)Math.random()*4;
+			System.out.println("Player");
 		}
 	}
 }
