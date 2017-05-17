@@ -52,10 +52,6 @@ public class Tablet extends JPanel implements Runnable {
 	}
 
 	public void paint(Graphics window) {
-		player.setKey(0, listen.getKey(0));
-		player.setKey(1, listen.getKey(1));
-		player.setKey(2, listen.getKey(2));
-		player.setKey(3, listen.getKey(3));
 
 		window.setColor(Color.BLACK);
 		window.fillRect(0, 0, AP_compsci_Game.WIDTH, AP_compsci_Game.HEIGHT);
@@ -63,11 +59,19 @@ public class Tablet extends JPanel implements Runnable {
 		if (gameMode == 0) {
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
-				e.move();
+				e.move(this);
 				e.draw(window, this);
 				if (e.isDead()) {
+					e.onDeath(this);
 					entitys.remove(i);
 					i--;
+				}
+			}
+			for(Entity e : entitys){
+				for(Entity r : entitys){
+					if(e.colliding(r)){
+						e.onCollide(r,this);
+					}
 				}
 			}
 			if(player.isDead())gameMode = 2;

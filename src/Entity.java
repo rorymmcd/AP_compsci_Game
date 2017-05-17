@@ -38,12 +38,22 @@ public class Entity {
 		if(frame>maxFrame)frame=0;
 	}
 	
-	public void move(){
+	public void move(Tablet t){
 		//x++;
 	}
 
 	public boolean isDead() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public void onDeath(Tablet tablet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onCollide(Entity r2, Tablet tablet) {
+		// TODO Auto-generated method stub
+		
 	}
 }

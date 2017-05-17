@@ -26,18 +26,18 @@ public class Player extends Entity {
 		draw(g,sheets[dir],tablet);
 	}
 
-	public void move() {
-		if (keys[0]) {
+	public void move(Tablet tablet) {
+		if (tablet.listen.getKey(0)) {
 			x--;
 			dir = 0;
-		} else if (keys[1]) {
+		} else if (tablet.listen.getKey(1)) {
 			x++;
 			dir = 2;
 		} else {
-			if (keys[2])
+			if (tablet.listen.getKey(2))
 				y--;
 
-			else if (keys[3])
+			else if (tablet.listen.getKey(3))
 				y++;
 			dir = 1;
 		}
@@ -45,6 +45,10 @@ public class Player extends Entity {
 	
 	public boolean isDead(){
 		return health <= 0;
+	}
+	
+	public void onDeath(Tablet tablet){
+		tablet.gameMode = 2;
 	}
 
 }
