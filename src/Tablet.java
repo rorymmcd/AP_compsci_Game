@@ -42,6 +42,7 @@ public class Tablet extends JPanel implements Runnable {
 		player = new Player(ia, ib, ic, 400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
+		entitys.add(new Zombie(ib,ib,ib,ib,50,50));
 		new Thread(this).start();
 
 		setVisible(true);
@@ -71,6 +72,7 @@ public class Tablet extends JPanel implements Runnable {
 				for(Entity r : entitys){
 					if(e.colliding(r)){
 						e.onCollide(r,this);
+						System.out.println("COLLITION");
 					}
 				}
 			}
@@ -86,10 +88,12 @@ public class Tablet extends JPanel implements Runnable {
 		}
 		
 		else if(gameMode == 2){
-			
+			window.setColor( Color.WHITE );
+	        window.setFont(new Font("TAHOMA",Font.BOLD,18));
+	        window.drawString("GAME OVER", 20,20);
 		}
 
-		System.out.println(player.x + " " + player.y);
+		//System.out.println(player.x + " " + player.y);
 	}
 
 	@Override

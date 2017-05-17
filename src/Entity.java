@@ -18,7 +18,8 @@ public class Entity {
 	}
 	
 	public boolean colliding(Entity e){
-		return ((int)Math.sqrt(Math.pow(x-e.x, 2)+Math.pow(y-e.y,2))<r+e.r);
+		//return ((int)Math.sqrt(Math.pow(x-e.x, 2)+Math.pow(y-e.y,2))<r+e.r);
+		return 
 	}
 	
 	public void draw(Graphics g, Tablet tablet){
@@ -39,7 +40,10 @@ public class Entity {
 	}
 	
 	public void move(Tablet t){
-		//x++;
+		if(x<0+r)x=0+r;
+		if(y<0+r)y=0+r;
+		if(x>AP_compsci_Game.WIDTH-200-r)x=AP_compsci_Game.WIDTH-200-r;
+		if(y>AP_compsci_Game.HEIGHT-50-r)y=AP_compsci_Game.HEIGHT-50-r;
 	}
 
 	public boolean isDead() {

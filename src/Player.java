@@ -41,6 +41,7 @@ public class Player extends Entity {
 				y++;
 			dir = 1;
 		}
+		super.move(tablet);
 	}
 	
 	public boolean isDead(){
@@ -49,6 +50,10 @@ public class Player extends Entity {
 	
 	public void onDeath(Tablet tablet){
 		tablet.gameMode = 2;
+	}
+	
+	public void damage(int i){
+		health -= i;
 	}
 
 }
