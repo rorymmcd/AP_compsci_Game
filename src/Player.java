@@ -5,7 +5,6 @@ public class Player extends Entity {
 
 	private Image[] sheets;
 	private int dir; // 0-left 1-idle 2-right
-	private boolean[] keys;
 	private int health;
 	private final int maxHealth = 25;
 	private int dmgCountdown;
@@ -13,14 +12,13 @@ public class Player extends Entity {
 	public Player(Image i, Image l, Image r, int x, int y) {
 		super(i, x, y, 32, 32, 16, 5);
 		sheets = new Image[] { l, i, r };
-		keys = new boolean[4];
 		dir = 1;
 		health = maxHealth;
 		dmgCountdown = 0;
 	}
 
-	void setKey(int k, boolean v) {
-		keys[k] = v;
+	public int getHealth(){
+		return health;
 	}
 
 	public void draw(Graphics g, Tablet tablet) {

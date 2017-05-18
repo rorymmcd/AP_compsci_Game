@@ -16,7 +16,7 @@ public class Tablet extends JPanel implements Runnable {
 	KeyboardListener listen;
 	Player player;
 	Timer timer;
-	public int gameMode;//0-playing 1-paused 2-over
+	public int gameMode;// 0-playing 1-paused 2-over
 
 	public Tablet() {
 		timer = new Timer(50, new ActionListener() {
@@ -42,7 +42,7 @@ public class Tablet extends JPanel implements Runnable {
 		player = new Player(ia, ib, ic, 400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
-		entitys.add(new Zombie(ib,ib,ib,ib,50,50));
+		entitys.add(new Zombie(ib, ib, ib, ib, 50, 50));
 		new Thread(this).start();
 
 		setVisible(true);
@@ -68,35 +68,43 @@ public class Tablet extends JPanel implements Runnable {
 					i--;
 				}
 			}
-			for(int i = 0; i<entitys.size(); i++){
+			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
-				for(int j = i+1; j < entitys.size(); j++){
+				for (int j = i + 1; j < entitys.size(); j++) {
 					Entity r = entitys.get(j);
-					if(e.colliding(r)){
-						e.onCollide(r,this);
+					if (e.colliding(r)) {
+						e.onCollide(r, this);
 						r.onCollide(e, this);
 						System.out.println("COLLITION");
 					}
 				}
 			}
-			if(player.isDead())gameMode = 2;
-			if(listen.getKey(5))gameMode = 1;
-		}
-		
-		else if(gameMode == 1){
-			window.setColor( Color.WHITE );
-	        window.setFont(new Font("TAHOMA",Font.BOLD,18));
-	        window.drawString("PAUSED", 20,20);
-	        if(listen.getKey(5))gameMode = 0;
-		}
-		
-		else if(gameMode == 2){
-			window.setColor( Color.WHITE );
-	        window.setFont(new Font("TAHOMA",Font.BOLD,18));
-	        window.drawString("GAME OVER", 20,20);
+			window.setColor(Color.WHITE);
+			window.drawLine(AP_compsci_Game.WIDTH-200, 0, AP_compsci_Game.WIDTH-200, AP_compsci_Game.HEIGHT);
+			window.setFont(new Font("TAHOMA", Font.BOLD, 18));
+			window.drawString("PLAYER HEALTH", AP_compsci_Game.WIDTH-190, 20);
+			window.drawString(player.getHealth()+"/25", AP_compsci_Game.WIDTH-190, 40);
+			if (player.isDead())
+				gameMode = 2;
+			if (listen.getKey(5))
+				gameMode = 1;
 		}
 
-		//System.out.println(player.x + " " + player.y);
+		else if (gameMode == 1) {
+			window.setColor(Color.WHITE);
+			window.setFont(new Font("TAHOMA", Font.BOLD, 18));
+			window.drawString("PAUSED", 20, 20);
+			if (listen.getKey(5))
+				gameMode = 0;
+		}
+
+		else if (gameMode == 2) {
+			window.setColor(Color.WHITE);
+			window.setFont(new Font("TAHOMA", Font.BOLD, 18));
+			window.drawString("GAME OVER", 20, 20);
+		}
+
+		// System.out.println(player.x + " " + player.y);
 	}
 
 	@Override
