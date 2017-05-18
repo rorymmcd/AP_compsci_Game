@@ -36,7 +36,7 @@ public class Zombie extends Entity {
 			
 	}
 	
-	public void onCollide(Entity e){
+	public void onCollide(Entity e, Tablet t){
 		if(e instanceof Player){
 			Player p = (Player) e;
 			p.damage(5);

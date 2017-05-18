@@ -8,6 +8,7 @@ public class Player extends Entity {
 	private boolean[] keys;
 	private int health;
 	private final int maxHealth = 25;
+	private int dmgCountdown;
 
 	public Player(Image i, Image l, Image r, int x, int y) {
 		super(i, x, y, 32, 32, 16, 5);
@@ -15,15 +16,15 @@ public class Player extends Entity {
 		keys = new boolean[4];
 		dir = 1;
 		health = maxHealth;
-
+		dmgCountdown = 0;
 	}
 
 	void setKey(int k, boolean v) {
 		keys[k] = v;
 	}
-	
-	public void draw(Graphics g, Tablet tablet){
-		draw(g,sheets[dir],tablet);
+
+	public void draw(Graphics g, Tablet tablet) {
+		draw(g, sheets[dir], tablet);
 	}
 
 	public void move(Tablet tablet) {
@@ -41,19 +42,28 @@ public class Player extends Entity {
 				y++;
 			dir = 1;
 		}
+		if (dmgCountdown > 0)
+			dmgCountdown--;
 		super.move(tablet);
 	}
-	
-	public boolean isDead(){
+
+	public boolean isDead() {
 		return health <= 0;
 	}
-	
-	public void onDeath(Tablet tablet){
+
+	public void onDeath(Tablet tablet) {
 		tablet.gameMode = 2;
 	}
-	
-	public void damage(int i){
-		health -= i;
+
+	public void damage(int i) {
+		if (dmgCountdown == 0) {
+			health -= i;
+			dmgCountdown = 200;
+		}
+	}
+
+	public void onCollide(Entity e, Tablet t) {
+
 	}
 
 }
