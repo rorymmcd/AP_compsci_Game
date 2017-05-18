@@ -17,6 +17,7 @@ public class Tablet extends JPanel implements Runnable {
 	Player player;
 	Timer timer;
 	public int gameMode;// 0-playing 1-paused 2-over
+	private int time;
 
 	public Tablet() {
 		timer = new Timer(50, new ActionListener() {
@@ -42,7 +43,7 @@ public class Tablet extends JPanel implements Runnable {
 		player = new Player(ia, ib, ic, 400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
-		entitys.add(new Zombie(ib, ib, ib, ib, 50, 50));
+		for(int i = 0; i < 20; i++)entitys.add(new Zombie(ib, ib, ib, ib, (int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 		new Thread(this).start();
 
 		setVisible(true);
@@ -58,6 +59,7 @@ public class Tablet extends JPanel implements Runnable {
 		window.fillRect(0, 0, AP_compsci_Game.WIDTH, AP_compsci_Game.HEIGHT);
 
 		if (gameMode == 0) {
+			time++;
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
 				e.move(this);
@@ -84,6 +86,8 @@ public class Tablet extends JPanel implements Runnable {
 			window.setFont(new Font("TAHOMA", Font.BOLD, 18));
 			window.drawString("PLAYER HEALTH", AP_compsci_Game.WIDTH-190, 20);
 			window.drawString(player.getHealth()+"/25", AP_compsci_Game.WIDTH-190, 40);
+			window.drawString("TIME", AP_compsci_Game.WIDTH-190, 62);
+			window.drawString(time+"", AP_compsci_Game.WIDTH-190, 84);
 			if (player.isDead())
 				gameMode = 2;
 			if (listen.getKey(5))
@@ -102,6 +106,7 @@ public class Tablet extends JPanel implements Runnable {
 			window.setColor(Color.WHITE);
 			window.setFont(new Font("TAHOMA", Font.BOLD, 18));
 			window.drawString("GAME OVER", 20, 20);
+			window.drawString("TIME: "+time, 20,42);
 		}
 
 		// System.out.println(player.x + " " + player.y);
