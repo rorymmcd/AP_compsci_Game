@@ -3,7 +3,7 @@ import java.awt.Image;
 
 
 public class Zombie extends Entity {
-	
+	public static Image l,r,u,d;
 	private Image[] sheets;
 	private int dir,health;
 	private final int maxHealth = 5;
