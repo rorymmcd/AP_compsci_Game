@@ -34,6 +34,7 @@ public class Tablet extends JPanel implements Runnable {
 		listen = new KeyboardListener();
 		this.addKeyListener(listen);
 		Toolkit tk = Toolkit.getDefaultToolkit();
+		Sword_entity.sprite_sheet=tk.getImage(getClass().getResource("Swords.png"));
 		Image ia = tk
 				.getImage(getClass().getResource("gobby_idleL_strip8.png"));
 		Image ib = tk
@@ -43,6 +44,7 @@ public class Tablet extends JPanel implements Runnable {
 		player = new Player(ia, ib, ic, 400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
+		player.addItem(new Sword_item(), this);
 		for(int i = 0; i < 20; i++)entitys.add(new Zombie(ib, ib, ib, ib, (int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 		new Thread(this).start();
 
@@ -77,7 +79,7 @@ public class Tablet extends JPanel implements Runnable {
 					if (e.colliding(r)) {
 						e.onCollide(r, this);
 						r.onCollide(e, this);
-						System.out.println("COLLITION");
+						//System.out.println("COLLITION");
 					}
 				}
 			}

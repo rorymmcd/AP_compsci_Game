@@ -6,11 +6,16 @@ public class KeyboardListener implements KeyListener {
 	private boolean keys[];
 
 	public KeyboardListener() {
-		keys = new boolean[6];
+		keys = new boolean[12];
 	}
 
 	public boolean getKey(int k) {
 		if(k==5){
+			boolean t = keys[k];
+			keys[k]=false;
+			return t;
+		}
+		if(k==4){
 			boolean t = keys[k];
 			keys[k]=false;
 			return t;
@@ -39,6 +44,24 @@ public class KeyboardListener implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_P) {
 			keys[5] = true;
 		}
+		if(e.getKeyCode() == KeyEvent.VK_1){
+			keys[6] = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_2){
+			keys[7] = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_3){
+			keys[8] = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_4){
+			keys[9] = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_5){
+			keys[10] = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_6){
+			keys[11] = true;
+		}
 	}
 
 	@Override
@@ -61,6 +84,24 @@ public class KeyboardListener implements KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_P) {
 			keys[5] = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_1){
+			keys[6] = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_2){
+			keys[7] = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_3){
+			keys[8] = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_4){
+			keys[9] = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_5){
+			keys[10] = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_6){
+			keys[11] = false;
 		}
 	}
 

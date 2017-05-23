@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 
 public class Player extends Entity {
 
@@ -8,6 +9,9 @@ public class Player extends Entity {
 	private int health;
 	private final int maxHealth = 25;
 	private int dmgCountdown;
+	private ArrayList<Item> inventory;
+	private final int invMaxSize = 6;
+	public int selectedItem;
 
 	public Player(Image i, Image l, Image r, int x, int y) {
 		super(i, x, y, 32, 32, 16, 5);
@@ -15,6 +19,14 @@ public class Player extends Entity {
 		dir = 1;
 		health = maxHealth;
 		dmgCountdown = 0;
+		inventory = new ArrayList<Item>();
+	}
+	
+	public void addItem(Item i, Tablet t){
+		if(inventory.size()<invMaxSize){
+			inventory.add(i);
+		}
+		i.onGet(t);
 	}
 
 	public int getHealth(){
@@ -40,6 +52,18 @@ public class Player extends Entity {
 				y++;
 			dir = 1;
 		}
+		for(int i = 0; i < inventory.size(); i++){
+			Item m = inventory.get(i);
+			if(m.isDead()){
+				inventory.remove(i);
+				i--;
+			}
+		}
+		if(selectedItem>inventory.size())selectedItem=inventory.size();
+		if(tablet.listen.getKey(4)){
+			inventory.get(selectedItem).onUse(tablet);
+		}
+		System.out.println(selectedItem);
 		if (dmgCountdown > 0)
 			dmgCountdown--;
 		super.move(tablet);

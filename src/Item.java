@@ -3,6 +3,10 @@ import java.awt.Image;
 public class Item {
 	public Image icon;
 	
+	public Item(Image i){
+		icon = i;
+	}
+	
 	public void onUse(Tablet t){
 		
 	}
@@ -11,5 +15,7 @@ public class Item {
 		
 	}
 	
-	
+	public boolean isDead(){
+		return false;
+	}
 }

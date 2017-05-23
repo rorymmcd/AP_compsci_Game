@@ -7,6 +7,7 @@ public class Zombie extends Entity {
 	private Image[] sheets;
 	private int dir,health;
 	private final int maxHealth = 5;
+	private int dmgCountdown;
 	
 	public Zombie(Image l, Image u, Image r, Image d, int x, int y){
 		super(l,x,y,32,32,16,0);
@@ -14,6 +15,7 @@ public class Zombie extends Entity {
 		dir = 1;
 		//0-left 1-up 2-right 3-down
 		health = maxHealth;
+		dmgCountdown = 0;
 	}
 	
 	public void draw(Graphics g, Tablet tablet){
@@ -41,7 +43,14 @@ public class Zombie extends Entity {
 			Player p = (Player) e;
 			p.damage(5);
 			dir=(int)Math.random()*4;
-			System.out.println("Player");
+			//System.out.println("Player");
+		}
+	}
+	
+	public void damage(int i) {
+		if (dmgCountdown == 0) {
+			health -= i;
+			dmgCountdown = 200;
 		}
 	}
 }
