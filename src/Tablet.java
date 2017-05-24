@@ -33,6 +33,7 @@ public class Tablet extends JPanel implements Runnable {
 		gameMode = 0;
 		listen = new KeyboardListener();
 		this.addKeyListener(listen);
+		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Sword_entity.sprite_sheet = tk.getImage(getClass().getResource("Swords.png"));
 		Sword_item.sword_icon = tk.getImage(getClass().getResource("Sword_icon.png"));
@@ -44,6 +45,7 @@ public class Tablet extends JPanel implements Runnable {
 		Zombie.u = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
 		Zombie.r = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
 		Zombie.d = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		
 		player = new Player(400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
