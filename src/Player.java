@@ -34,10 +34,11 @@ public class Player extends Entity {
 	public int getHealth() {
 		return health;
 	}
-	
-	public void addHealth(int h){
-		health+=h;
-		if(health>maxHealth)health=maxHealth;
+
+	public void addHealth(int h) {
+		health += h;
+		if (health > maxHealth)
+			health = maxHealth;
 	}
 
 	public void draw(Graphics g, Tablet tablet) {
@@ -57,7 +58,21 @@ public class Player extends Entity {
 		} else if (tablet.listen.getKey(3)) {
 			y++;
 			dir = 3;
-		}
+		} else if (tablet.listen.getKey(6))
+			selectedItem = 0;
+		else if (tablet.listen.getKey(7))
+			selectedItem = 1;
+		else if (tablet.listen.getKey(8))
+			selectedItem = 2;
+		else if (tablet.listen.getKey(9))
+			selectedItem = 3;
+		else if (tablet.listen.getKey(10))
+			selectedItem = 4;
+		else if (tablet.listen.getKey(11))
+			selectedItem = 5;
+
+		if (selectedItem >= inventory.size())
+			selectedItem = inventory.size() - 1;
 
 		for (int i = 0; i < inventory.size(); i++) {
 			Item m = inventory.get(i);

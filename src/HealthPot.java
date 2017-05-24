@@ -19,5 +19,6 @@ public class HealthPot extends Item {
 	
 	public void onUse(Tablet t, Player p){
 		p.addHealth(10);
+		dead = true;
 	}
 }

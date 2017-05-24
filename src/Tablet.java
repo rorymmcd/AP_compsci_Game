@@ -34,7 +34,7 @@ public class Tablet extends JPanel implements Runnable {
 		listen = new KeyboardListener();
 		this.addKeyListener(listen);
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		Sword_entity.sprite_sheet=tk.getImage(getClass().getResource("Swords.png"));
+		Sword_entity.sprite_sheet = tk.getImage(getClass().getResource("Swords.png"));
 		Sword_item.sword_icon = tk.getImage(getClass().getResource("Sword_icon.png"));
 		Player.l = tk.getImage(getClass().getResource("Player_left.png"));
 		Player.u = tk.getImage(getClass().getResource("Player_back.png"));
@@ -47,7 +47,8 @@ public class Tablet extends JPanel implements Runnable {
 		player = new Player(400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
-		player.addItem(new Sword_item(), this);
+		entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new Sword_item()));
+		//player.addItem(new Sword_item(), this);
 		player.addItem(new HealthPot(), this);
 		player.addItem(new HealthPot(), this);
 		for(int i = 0; i < 10; i++)entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
