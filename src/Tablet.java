@@ -20,7 +20,7 @@ public class Tablet extends JPanel implements Runnable {
 	private int time;
 
 	public Tablet() {
-		timer = new Timer(50, new ActionListener() {
+		timer = new Timer(100, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (Entity en : entitys) {
@@ -35,17 +35,20 @@ public class Tablet extends JPanel implements Runnable {
 		this.addKeyListener(listen);
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Sword_entity.sprite_sheet=tk.getImage(getClass().getResource("Swords.png"));
-		Image ia = tk
-				.getImage(getClass().getResource("gobby_idleL_strip8.png"));
-		Image ib = tk
-				.getImage(getClass().getResource("gobby_moveL_strip6.png"));
-		Image ic = tk
-				.getImage(getClass().getResource("gobby_moveR_strip6.png"));
-		player = new Player(ia, ib, ic, 400, 300);
+		Sword_item.sword_icon = tk.getImage(getClass().getResource("Sword_icon.png"));
+		Player.l = tk.getImage(getClass().getResource("Player_left.png"));
+		Player.u = tk.getImage(getClass().getResource("Player_back.png"));
+		Player.r = tk.getImage(getClass().getResource("Player_right.png"));
+		Player.d = tk.getImage(getClass().getResource("Player_forward.png"));
+		Zombie.l = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		Zombie.u = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		Zombie.r = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		Zombie.d = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		player = new Player(400, 300);
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
 		player.addItem(new Sword_item(), this);
-		for(int i = 0; i < 20; i++)entitys.add(new Zombie(ib, ib, ib, ib, (int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
+		for(int i = 0; i < 10; i++)entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 		new Thread(this).start();
 
 		setVisible(true);
@@ -57,11 +60,12 @@ public class Tablet extends JPanel implements Runnable {
 
 	public void paint(Graphics window) {
 
-		window.setColor(Color.BLACK);
+		window.setColor(new Color(50,100,50));
 		window.fillRect(0, 0, AP_compsci_Game.WIDTH, AP_compsci_Game.HEIGHT);
 
 		if (gameMode == 0) {
 			time++;
+			//move and draw
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
 				e.move(this);
@@ -72,6 +76,7 @@ public class Tablet extends JPanel implements Runnable {
 					i--;
 				}
 			}
+			//handle collitions
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
 				for (int j = i + 1; j < entitys.size(); j++) {
@@ -83,6 +88,7 @@ public class Tablet extends JPanel implements Runnable {
 					}
 				}
 			}
+			//draw gui
 			window.setColor(Color.WHITE);
 			window.drawLine(AP_compsci_Game.WIDTH-200, 0, AP_compsci_Game.WIDTH-200, AP_compsci_Game.HEIGHT);
 			window.setFont(new Font("TAHOMA", Font.BOLD, 18));
@@ -90,6 +96,11 @@ public class Tablet extends JPanel implements Runnable {
 			window.drawString(player.getHealth()+"/25", AP_compsci_Game.WIDTH-190, 40);
 			window.drawString("TIME", AP_compsci_Game.WIDTH-190, 62);
 			window.drawString(time+"", AP_compsci_Game.WIDTH-190, 84);
+			//draw items
+			for(int i = 0; i < player.inventory.size(); i++){
+				window.drawImage(player.inventory.get(i).icon,(AP_compsci_Game.WIDTH-190)+(40*(i%2)),114+(40*(i/2)),this);
+			}
+			
 			if (player.isDead())
 				gameMode = 2;
 			if (listen.getKey(5))

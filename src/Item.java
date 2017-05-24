@@ -7,7 +7,7 @@ public class Item {
 		icon = i;
 	}
 	
-	public void onUse(Tablet t){
+	public void onUse(Tablet t, Player p){
 		
 	}
 	

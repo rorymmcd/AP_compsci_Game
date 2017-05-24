@@ -4,32 +4,34 @@ import java.util.ArrayList;
 
 public class Player extends Entity {
 
+	public static Image u, d, l, r;
+
 	private Image[] sheets;
-	private int dir; // 0-left 1-idle 2-right
+	private int dir; // 0-left 1-up 2-right 3-down
 	private int health;
 	private final int maxHealth = 25;
 	private int dmgCountdown;
-	private ArrayList<Item> inventory;
+	public ArrayList<Item> inventory;
 	private final int invMaxSize = 6;
 	public int selectedItem;
 
-	public Player(Image i, Image l, Image r, int x, int y) {
-		super(i, x, y, 32, 32, 16, 5);
-		sheets = new Image[] { l, i, r };
+	public Player(int x, int y) {
+		super(d, x, y, 32, 32, 16, 1);
+		sheets = new Image[] { l, u, r, d };
 		dir = 1;
 		health = maxHealth;
 		dmgCountdown = 0;
 		inventory = new ArrayList<Item>();
 	}
-	
-	public void addItem(Item i, Tablet t){
-		if(inventory.size()<invMaxSize){
+
+	public void addItem(Item i, Tablet t) {
+		if (inventory.size() < invMaxSize) {
 			inventory.add(i);
 		}
 		i.onGet(t);
 	}
 
-	public int getHealth(){
+	public int getHealth() {
 		return health;
 	}
 
@@ -44,27 +46,28 @@ public class Player extends Entity {
 		} else if (tablet.listen.getKey(1)) {
 			x++;
 			dir = 2;
-		} else {
-			if (tablet.listen.getKey(2))
-				y--;
-
-			else if (tablet.listen.getKey(3))
-				y++;
+		} else if (tablet.listen.getKey(2)) {
+			y--;
 			dir = 1;
+		} else if (tablet.listen.getKey(3)) {
+			y++;
+			dir = 3;
 		}
-		for(int i = 0; i < inventory.size(); i++){
+
+		for (int i = 0; i < inventory.size(); i++) {
 			Item m = inventory.get(i);
-			if(m.isDead()){
+			if (m.isDead()) {
 				inventory.remove(i);
 				i--;
 			}
 		}
-		if(selectedItem>inventory.size())selectedItem=inventory.size();
-		if(tablet.listen.getKey(4)){
-			inventory.get(selectedItem).onUse(tablet);
+		if (selectedItem > inventory.size())
+			selectedItem = inventory.size();
+		if (tablet.listen.getKey(4)) {
+			inventory.get(selectedItem).onUse(tablet, this);
 			System.out.println("USE");
 		}
-		System.out.println(selectedItem);
+		// System.out.println(selectedItem);
 		if (dmgCountdown > 0)
 			dmgCountdown--;
 		super.move(tablet);

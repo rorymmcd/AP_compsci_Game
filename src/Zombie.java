@@ -9,8 +9,8 @@ public class Zombie extends Entity {
 	private final int maxHealth = 5;
 	private int dmgCountdown;
 	
-	public Zombie(Image l, Image u, Image r, Image d, int x, int y){
-		super(l,x,y,32,32,16,0);
+	public Zombie(int x, int y){
+		super(d,x,y,32,32,16,0);
 		sheets = new Image[] {l,u,r,d};
 		dir = 1;
 		//0-left 1-up 2-right 3-down
