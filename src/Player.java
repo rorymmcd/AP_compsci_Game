@@ -58,7 +58,9 @@ public class Player extends Entity {
 		} else if (tablet.listen.getKey(3)) {
 			y++;
 			dir = 3;
-		} else if (tablet.listen.getKey(6))
+		}
+		
+		if (tablet.listen.getKey(6))
 			selectedItem = 0;
 		else if (tablet.listen.getKey(7))
 			selectedItem = 1;
@@ -72,7 +74,7 @@ public class Player extends Entity {
 			selectedItem = 5;
 
 		if (selectedItem >= inventory.size())
-			selectedItem = inventory.size() - 1; 
+			selectedItem = inventory.size() - 1;
 
 		for (int i = 0; i < inventory.size(); i++) {
 			Item m = inventory.get(i);

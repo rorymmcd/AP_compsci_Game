@@ -45,6 +45,7 @@ public class Tablet extends JPanel implements Runnable {
 		Zombie.u = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
 		Zombie.r = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
 		Zombie.d = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		HealthPot.HealthPot_icon = tk.getImage(getClass().getResource("Potion_icon.png"));
 		
 		player = new Player(400, 300);
 		entitys = new ArrayList<Entity>();
@@ -74,7 +75,8 @@ public class Tablet extends JPanel implements Runnable {
 			int rand = (int)(Math.random()*10000);
 			if(rand<10)
 				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
-			else if(rand<12);
+			else if(rand<12)
+				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new HealthPot()));
 			
 			//move and draw
 			for (int i = 0; i < entitys.size(); i++) {
