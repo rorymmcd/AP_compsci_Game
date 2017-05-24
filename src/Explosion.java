@@ -7,7 +7,7 @@ public class Explosion extends Entity {
 	private int life, strength;
 	
 	public Explosion(int x, int y, boolean hurtP, int s){
-		super(spritesheet,x,y,96,96,48,0);
+		super(spritesheet,x,y,96,96,48,1);
 		hurtPlayer = hurtP;
 		life = 50;
 		strength = s;

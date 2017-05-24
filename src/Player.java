@@ -88,7 +88,7 @@ public class Player extends Entity {
 			selectedItem = inventory.size();
 		if (tablet.listen.getKey(4)) {
 			inventory.get(selectedItem).onUse(tablet, this);
-			System.out.println("USE");
+			//System.out.println("USE");
 		}
 		// System.out.println(selectedItem);
 		if (dmgCountdown > 0)

@@ -10,7 +10,7 @@ public class Zombie extends Entity {
 	private int dmgCountdown;
 	
 	public Zombie(int x, int y){
-		super(d,x,y,32,32,16,0);
+		super(d,x,y,32,32,16,1);
 		sheets = new Image[] {l,u,r,d};
 		dir = 1;
 		//0-left 1-up 2-right 3-down

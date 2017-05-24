@@ -14,6 +14,10 @@ public class Mine extends Entity {
 			tablet.entitys.add(new Explosion(x,y,true,5));
 			dead = true;
 		}
+		if(e instanceof Explosion){
+			tablet.entitys.add(new Explosion(x,y,false,5));
+			dead = true;
+		}
 	}
 	
 	public boolean isDead(){

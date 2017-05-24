@@ -43,9 +43,12 @@ public class Tablet extends JPanel implements Runnable {
 		Player.d = tk.getImage(getClass().getResource("Player_forward.png"));
 		Zombie.l = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
 		Zombie.u = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
-		Zombie.r = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
+		Zombie.r = tk.getImage(getClass().getResource("gobby_moveR_strip6.png"));
 		Zombie.d = tk.getImage(getClass().getResource("gobby_moveL_strip6.png"));
 		HealthPot.HealthPot_icon = tk.getImage(getClass().getResource("Potion_icon.png"));
+		Explosion.spritesheet = tk.getImage(getClass().getResource("Explosion.png"));
+		Bomb.Bomb_icon = tk.getImage(getClass().getResource("Bomb_icon.png"));
+		Mine.spritesheet = tk.getImage(getClass().getResource("Mine.png"));
 		
 		player = new Player(400, 300);
 		entitys = new ArrayList<Entity>();
@@ -77,6 +80,10 @@ public class Tablet extends JPanel implements Runnable {
 				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 			else if(rand<12)
 				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new HealthPot()));
+			else if(rand<14)
+				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new Bomb()));
+			else if(rand<19)
+				entitys.add(new Mine((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 			
 			//move and draw
 			for (int i = 0; i < entitys.size(); i++) {
