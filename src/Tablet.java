@@ -76,13 +76,13 @@ public class Tablet extends JPanel implements Runnable {
 			time++;
 			
 			int rand = (int)(Math.random()*10000);
-			if(rand<10)
+			if(rand<6)
 				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
-			else if(rand<12)
+			else if(rand<8)
 				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new HealthPot()));
-			else if(rand<14)
+			else if(rand<10)
 				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new Bomb()));
-			else if(rand<19)
+			else if(rand<13)
 				entitys.add(new Mine((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 			
 			//move and draw
@@ -97,16 +97,22 @@ public class Tablet extends JPanel implements Runnable {
 				}
 			}
 			//handle collitions
+			ArrayList<Double<Entity,Entity>> collitions = new ArrayList<Double<Entity,Entity>>();
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
 				for (int j = i + 1; j < entitys.size(); j++) {
 					Entity r = entitys.get(j);
 					if (e.colliding(r)) {
-						e.onCollide(r, this);
-						r.onCollide(e, this);
+						collitions.add(new Double<Entity,Entity>(e,r));
+						//e.onCollide(r, this);
+						//r.onCollide(e, this);
 						//System.out.println("COLLITION");
 					}
 				}
+			}
+			for(Double<Entity,Entity> d : collitions){
+				d.a.onCollide(d.b,this);
+				d.b.onCollide(d.a,this);
 			}
 			//draw gui
 			window.setColor(Color.WHITE);
