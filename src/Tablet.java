@@ -48,6 +48,8 @@ public class Tablet extends JPanel implements Runnable {
 		entitys = new ArrayList<Entity>();
 		entitys.add(player);
 		player.addItem(new Sword_item(), this);
+		player.addItem(new HealthPot(), this);
+		player.addItem(new HealthPot(), this);
 		for(int i = 0; i < 10; i++)entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 		new Thread(this).start();
 
@@ -65,6 +67,12 @@ public class Tablet extends JPanel implements Runnable {
 
 		if (gameMode == 0) {
 			time++;
+			
+			int rand = (int)(Math.random()*10000);
+			if(rand<10)
+				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
+			else if(rand<12);
+			
 			//move and draw
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
@@ -100,6 +108,8 @@ public class Tablet extends JPanel implements Runnable {
 			for(int i = 0; i < player.inventory.size(); i++){
 				window.drawImage(player.inventory.get(i).icon,(AP_compsci_Game.WIDTH-190)+(40*(i%2)),114+(40*(i/2)),this);
 			}
+			window.setColor(Color.BLUE);
+			window.drawRect((AP_compsci_Game.WIDTH-190)+(40*(player.selectedItem%2)), 114+(40*(player.selectedItem/2)), 32, 32);
 			
 			if (player.isDead())
 				gameMode = 2;

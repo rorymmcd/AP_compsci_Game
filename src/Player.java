@@ -34,6 +34,11 @@ public class Player extends Entity {
 	public int getHealth() {
 		return health;
 	}
+	
+	public void addHealth(int h){
+		health+=h;
+		if(health>maxHealth)health=maxHealth;
+	}
 
 	public void draw(Graphics g, Tablet tablet) {
 		draw(g, sheets[dir], tablet);
@@ -56,6 +61,7 @@ public class Player extends Entity {
 
 		for (int i = 0; i < inventory.size(); i++) {
 			Item m = inventory.get(i);
+			inventory.get(i).decTimer();
 			if (m.isDead()) {
 				inventory.remove(i);
 				i--;

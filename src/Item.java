@@ -7,6 +7,10 @@ public class Item {
 		icon = i;
 	}
 	
+	public void decTimer(){
+		
+	}
+	
 	public void onUse(Tablet t, Player p){
 		
 	}
