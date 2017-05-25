@@ -26,6 +26,7 @@ public class Sword_entity extends Entity {
 		if(e instanceof Zombie){
 			Zombie z = (Zombie) e;
 			z.damage(5);
+			life=0;
 		}
 	}
 }

@@ -76,7 +76,7 @@ public class Tablet extends JPanel implements Runnable {
 			time++;
 			
 			int rand = (int)(Math.random()*10000);
-			if(rand<6)
+			if(rand<7)
 				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 			else if(rand<8)
 				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new HealthPot()));
@@ -84,6 +84,10 @@ public class Tablet extends JPanel implements Runnable {
 				entitys.add(new ItemEntity((int)(Math.random()*600)+100, (int)(Math.random()*400)+100,new Bomb()));
 			else if(rand<13)
 				entitys.add(new Mine((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
+			else if (rand<16&&time>20000)
+				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
+			else if(rand<20&&time>30000)
+				entitys.add(new Zombie((int)(Math.random()*600)+100, (int)(Math.random()*400)+100));
 			
 			//move and draw
 			for (int i = 0; i < entitys.size(); i++) {
