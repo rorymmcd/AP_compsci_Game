@@ -100,7 +100,7 @@ public class Tablet extends JPanel implements Runnable {
 					i--;
 				}
 			}
-			//handle collitions
+			//handle collisions
 			ArrayList<Double<Entity,Entity>> collitions = new ArrayList<Double<Entity,Entity>>();
 			for (int i = 0; i < entitys.size(); i++) {
 				Entity e = entitys.get(i);
